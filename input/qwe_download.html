@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[3.4.1];shiny[1.4.0];selectize[0.11.2];font-awesome[5.3.1];bootstrap[3.4.1]</script>
+<script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<link href="font-awesome-5.3.1/css/all.min.css" rel="stylesheet" />
+<link href="font-awesome-5.3.1/css/v4-shims.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>RICT Compare Module Visualisation</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h2 align="center">
+      <h2>RICT Compare Module Visualisation</h2>
+    </h2>
+    <div class="row">
+      <div class="col-sm-4">
+        <form class="well">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="results">Compared site results</label>
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                  Browse...
+                  <input id="results" name="results" type="file" style="display: none;" accept="text/csv,text/comma-separated-values,text/plain,.csv"/>
+                </span>
+              </label>
+              <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
+            </div>
+            <div id="results_progress" class="progress progress-striped active shiny-file-input-progress">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="select_sites">Select sites compared</label>
+            <div>
+              <select id="select_sites"></select>
+              <script type="application/json" data-for="select_sites" data-nonempty="">{}</script>
+            </div>
+          </div>
+          <button id="make_plot" type="button" class="btn btn-default action-button">Produce plot</button>
+        </form>
+      </div>
+      <div class="col-sm-8">
+        <div class="tabbable">
+          <ul class="nav nav-tabs" data-tabsetid="8965">
+            <li class="active">
+              <a href="#tab-8965-1" data-toggle="tab" data-value="Plot">Plot</a>
+            </li>
+            <li>
+              <a href="#tab-8965-2" data-toggle="tab" data-value="Matrix">Matrix</a>
+            </li>
+            <li>
+              <a href="#tab-8965-3" data-toggle="tab" data-value="Raw Data">Raw Data</a>
+            </li>
+          </ul>
+          <div class="tab-content" data-tabsetid="8965">
+            <div class="tab-pane active" data-value="Plot" id="tab-8965-1">
+              <h4 align="center">
+                <div id="title_plot" class="shiny-text-output"></div>
+              </h4>
+              <div id="corrPlot" class="shiny-plot-output" style="width: 100% ; height: 400px"></div>
+            </div>
+            <div class="tab-pane" data-value="Matrix" id="tab-8965-2">
+              <h4 align="center">
+                <div id="title_matrix" class="shiny-text-output"></div>
+              </h4>
+              <div id="quality_matrix" class="shiny-html-output"></div>
+              <div id="filetype" class="form-group shiny-input-radiogroup shiny-input-container">
+                <label class="control-label" for="filetype">File type:</label>
+                <div class="shiny-options-group">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="filetype" value="csv" checked="checked"/>
+                      <span>csv</span>
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="filetype" value="tsv"/>
+                      <span>tsv</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <a id="downloadData" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+                <i class="fa fa-download"></i>
+                Download
+              </a>
+            </div>
+            <div class="tab-pane" data-value="Raw Data" id="tab-8965-3">
+              <div id="results_tab" class="shiny-html-output"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
